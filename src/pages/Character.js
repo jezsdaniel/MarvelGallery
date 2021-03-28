@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -13,10 +13,10 @@ import UserAvatar from 'react-native-user-avatar';
 import Md5 from 'md5';
 
 import Container from '../components/Container';
-import {colors} from '../styles/theme';
+import { colors } from '../styles/theme';
 
 //Your api keys go here
-import {marvelPrivateApiKey, marvelPublicApiKey} from '../config/apiKeys';
+import { marvelPrivateApiKey, marvelPublicApiKey } from '../config/apiKeys';
 
 import CharacterDetails from '../components/CharacterDetails';
 
@@ -61,7 +61,7 @@ const Character = () => {
     setModalVisible(false);
   };
 
-  const renderCharacterItem = ({item}) => {
+  const renderCharacterItem = ({ item }) => {
     return (
       <Pressable style={styles.itemContainer} onPress={() => openDetails(item)}>
         <UserAvatar
@@ -80,7 +80,11 @@ const Character = () => {
   return (
     <Container>
       <View style={styles.searchBarContainer}>
-        <Search backgroundColor="black" onSearch={onSearch} />
+        <Search
+          backgroundColor="black"
+          onSearch={onSearch}
+          placeholderTextColor="black"
+        />
       </View>
       {data.length === 1 && data[0] === 'init' ? (
         <View style={styles.initContainer}>
@@ -91,7 +95,7 @@ const Character = () => {
       ) : loading ? (
         <View style={styles.initContainer}>
           <ActivityIndicator
-            style={{alignSelf: 'center'}}
+            style={{ alignSelf: 'center' }}
             size="large"
             color={colors.primaryColor}
           />
@@ -114,7 +118,8 @@ const Character = () => {
         </View>
       )}
       <Modal
-        onRequestClose={() => {}}
+        onRequestClose={() => {
+        }}
         animationType="slide"
         visible={modalVisible}>
         <CharacterDetails closeModal={closeModal} character={character} />
